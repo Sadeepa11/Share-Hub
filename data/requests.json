@@ -1,0 +1,68 @@
+[
+  {
+    "id": "req-1",
+    "postId": "post-1",
+    "requesterId": "user-2",
+    "ownerId": "user-1",
+    "quantityRequested": 1,
+    "reason": "I'm taking Calculus this semester and would love to have this book!",
+    "status": "Rejected",
+    "createdAt": "2026-06-03T09:00:00.000Z",
+    "updatedAt": "2026-06-04T03:38:35.418Z"
+  },
+  {
+    "id": "req-2",
+    "postId": "post-4",
+    "requesterId": "user-1",
+    "ownerId": "user-2",
+    "quantityRequested": 2,
+    "reason": "I need some notebooks for my literature class.",
+    "status": "Delivered",
+    "createdAt": "2026-06-03T10:00:00.000Z",
+    "updatedAt": "2026-06-03T05:32:33.486Z"
+  },
+  {
+    "postId": "post-3",
+    "requesterId": "user-3",
+    "ownerId": "user-2",
+    "quantityRequested": 2,
+    "reason": "test",
+    "id": "0766a898-120e-469b-b643-13850b907bcc",
+    "status": "Delivered",
+    "createdAt": "2026-06-03T05:31:10.550Z",
+    "updatedAt": "2026-06-03T05:32:30.638Z"
+  },
+  {
+    "postId": "post-1",
+    "requesterId": "user-2",
+    "ownerId": "user-1",
+    "quantityRequested": 1,
+    "reason": "Test 2",
+    "id": "d6408ad4-095b-439d-992c-a7574a1b9a48",
+    "status": "Delivered",
+    "createdAt": "2026-06-03T07:01:23.967Z",
+    "updatedAt": "2026-06-04T03:38:29.944Z"
+  },
+  {
+    "postId": "post-1",
+    "requesterId": "user-2",
+    "ownerId": "user-1",
+    "quantityRequested": 1,
+    "reason": "Test 3",
+    "id": "886cc8df-8d44-45bf-848d-831e6ccc4fd0",
+    "status": "Rejected",
+    "createdAt": "2026-06-03T07:02:02.490Z",
+    "updatedAt": "2026-06-04T03:38:21.118Z"
+  },
+  {
+    "postId": "post-1",
+    "requesterId": "user-2",
+    "ownerId": "user-1",
+    "quantityRequested": 1,
+    "reason": "Test",
+    "id": "54b6adbc-5d04-42ed-acc2-820fa1b38c4e",
+    "status": "Packing",
+    "createdAt": "2026-06-03T13:23:03.652Z",
+    "updatedAt": "2026-06-04T03:38:15.671Z"
+  }
+]

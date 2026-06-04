@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Phone body -->
+  <rect x="22" y="8" width="56" height="84" rx="10" fill="#1b3022"/>
+  <rect x="27" y="14" width="46" height="68" rx="7" fill="#2d4a35"/>
+  <circle cx="50" cy="88" r="4" fill="#3d6b4a"/>
+  <!-- Camera viewfinder on screen -->
+  <rect x="30" y="18" width="40" height="28" rx="4" fill="#3d6b4a"/>
+  <!-- Subject in viewfinder -->
+  <rect x="34" y="22" width="16" height="20" rx="3" fill="#1b3022"/>
+  <!-- Focus box -->
+  <path d="M34 22 L38 22 M34 22 L34 26" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <path d="M50 22 L46 22 M50 22 L50 26" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <path d="M34 42 L38 42 M34 42 L34 38" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <path d="M50 42 L46 42 M50 42 L50 38" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <!-- Camera button -->
+  <circle cx="64" cy="30" r="6" fill="#1b3022"/>
+  <circle cx="64" cy="30" r="3.5" fill="#f97316" opacity="0.8"/>
+  <!-- Text lines below viewfinder -->
+  <rect x="30" y="50" width="25" height="3.5" rx="1.5" fill="#3d6b4a"/>
+  <rect x="30" y="57" width="36" height="3.5" rx="1.5" fill="#3d6b4a"/>
+  <rect x="30" y="64" width="30" height="3.5" rx="1.5" fill="#3d6b4a"/>
+  <!-- Upload arrow above phone -->
+  <path d="M72 36 L72 22 M68 26 L72 22 L76 26" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="72" cy="18" r="5" fill="#f97316" opacity="0.2"/>
+</svg>

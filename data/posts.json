@@ -1,0 +1,57 @@
+[
+  {
+    "id": "post-1",
+    "userId": "user-1",
+    "title": "Calculus 101 Textbook",
+    "description": "Used but in good condition. No highlighting or torn pages.",
+    "category": "Books",
+    "quantity": 1,
+    "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=800&auto=format&fit=crop",
+    "status": "available",
+    "createdAt": "2026-06-03T04:00:00.000Z"
+  },
+  {
+    "id": "post-2",
+    "userId": "user-1",
+    "title": "TI-84 Plus Graphing Calculator",
+    "description": "Works perfectly. Needs 4 AAA batteries.",
+    "category": "Electronics",
+    "quantity": 1,
+    "imageUrl": "https://images.unsplash.com/photo-1574607383476-f517f260d30b?q=80&w=800&auto=format&fit=crop",
+    "status": "available",
+    "createdAt": "2026-06-03T05:00:00.000Z"
+  },
+  {
+    "id": "post-4",
+    "userId": "user-2",
+    "title": "Pack of A4 Notebooks",
+    "description": "Brand new, 5 notebooks in the pack. 100 pages each.",
+    "category": "Stationery",
+    "quantity": 3,
+    "imageUrl": "https://images.unsplash.com/photo-1531346878377-a5be20888e57?q=80&w=800&auto=format&fit=crop",
+    "status": "available",
+    "createdAt": "2026-06-03T07:00:00.000Z"
+  },
+  {
+    "id": "post-5",
+    "userId": "user-3",
+    "title": "Winter Jacket (Size M)",
+    "description": "Warm winter jacket, only worn a few times. Perfect for the coming season.",
+    "category": "Clothing",
+    "quantity": 1,
+    "imageUrl": "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800&auto=format&fit=crop",
+    "status": "available",
+    "createdAt": "2026-06-03T08:00:00.000Z"
+  },
+  {
+    "userId": "user-2",
+    "title": "Test",
+    "description": "Test Desc",
+    "category": "Electronics",
+    "quantity": 14,
+    "imageUrl": "/uploads/user-2/1780492666255-622630323-WhatsApp_Image_2026-06-02_at_3.35.47_PM.jpeg",
+    "id": "e2c3e7ad-6e50-4912-b02e-33fa49f7f1c8",
+    "status": "available",
+    "createdAt": "2026-06-03T13:17:46.705Z"
+  }
+]

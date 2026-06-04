@@ -1,0 +1,38 @@
+[
+  {
+    "id": "admin-id-1234",
+    "name": "System Admin",
+    "email": "admin@sharehub.edu",
+    "password": "admin",
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2026-06-03T00:00:00.000Z"
+  },
+  {
+    "id": "user-1",
+    "name": "Alice Johnson",
+    "email": "alice@sharehub.edu",
+    "password": "password",
+    "role": "user",
+    "status": "active",
+    "createdAt": "2026-06-03T01:00:00.000Z"
+  },
+  {
+    "id": "user-2",
+    "name": "Bob Smith",
+    "email": "bob@sharehub.edu",
+    "password": "password",
+    "role": "user",
+    "status": "active",
+    "createdAt": "2026-06-03T02:00:00.000Z"
+  },
+  {
+    "id": "user-3",
+    "name": "Charlie Brown",
+    "email": "charlie@sharehub.edu",
+    "password": "password",
+    "role": "user",
+    "status": "active",
+    "createdAt": "2026-06-03T03:00:00.000Z"
+  }
+]

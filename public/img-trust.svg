@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="54" fill="#2d4a35" opacity="0.15"/>
+  <!-- Shield outer -->
+  <path d="M60 12 L96 28 L96 58 C96 80 80 100 60 108 C40 100 24 80 24 58 L24 28Z" fill="#3d6b4a"/>
+  <!-- Shield inner -->
+  <path d="M60 20 L88 34 L88 58 C88 76 76 92 60 99 C44 92 32 76 32 58 L32 34Z" fill="#2d4a35"/>
+  <!-- Checkmark -->
+  <path d="M42 60 L54 72 L78 46" stroke="#f97316" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Stars around shield -->
+  <path d="M16 44 L17.2 39 L18.4 44 L23 45.2 L18.4 46.4 L17.2 51 L16 46.4 L11 45.2Z" fill="#f97316" opacity="0.7"/>
+  <path d="M100 44 L101.2 39 L102.4 44 L107 45.2 L102.4 46.4 L101.2 51 L100 46.4 L95 45.2Z" fill="#faf7f2" opacity="0.6"/>
+  <circle cx="60" cy="14" r="4" fill="#f97316" opacity="0.5"/>
+  <circle cx="30" cy="100" r="5" fill="#3d6b4a" opacity="0.4"/>
+  <circle cx="90" cy="100" r="5" fill="#3d6b4a" opacity="0.4"/>
+  <!-- Shine on shield -->
+  <path d="M42 32 Q52 26 60 26 Q68 26 74 32" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.2"/>
+</svg>
