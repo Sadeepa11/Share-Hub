@@ -1,7 +1,5 @@
-import fs from 'fs/promises';
-import path from 'path';
-
-const DATA_DIR = path.join(process.cwd(), 'data');
+import connectToDatabase from './mongodb';
+import { UserModel, PostModel, DonationRequestModel, ReportModel } from './models';
 
 export type UserRole = 'user' | 'admin';
 export type UserStatus = 'active' | 'blocked';
@@ -60,150 +58,134 @@ export interface Report {
   createdAt: string;
 }
 
-async function readJson<T>(filename: string): Promise<T[]> {
-  try {
-    const filePath = path.join(DATA_DIR, filename);
-    const data = await fs.readFile(filePath, 'utf-8');
-    return JSON.parse(data) as T[];
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-      return [];
-    }
-    throw error;
-  }
-}
-
-async function writeJson<T>(filename: string, data: T[]): Promise<void> {
-  const filePath = path.join(DATA_DIR, filename);
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8');
-}
-
 export const db = {
   users: {
-    findMany: () => readJson<User>('users.json'),
+    findMany: async () => {
+      await connectToDatabase();
+      const users = await UserModel.find();
+      return users.map(u => u.toJSON()) as User[];
+    },
     findById: async (id: string) => {
-      const users = await readJson<User>('users.json');
-      return users.find(u => u.id === id);
+      await connectToDatabase();
+      const user = await UserModel.findById(id);
+      return user ? (user.toJSON() as User) : undefined;
     },
     findByEmail: async (email: string) => {
-      const users = await readJson<User>('users.json');
-      return users.find(u => u.email === email);
+      await connectToDatabase();
+      const user = await UserModel.findOne({ email });
+      return user ? (user.toJSON() as User) : undefined;
     },
     create: async (data: Omit<User, 'id' | 'createdAt'>) => {
-      const users = await readJson<User>('users.json');
-      const newUser: User = {
+      await connectToDatabase();
+      const newUser = await UserModel.create({
         ...data,
-        id: crypto.randomUUID(),
-        createdAt: new Date().toISOString(),
-      };
-      users.push(newUser);
-      await writeJson('users.json', users);
-      return newUser;
+        createdAt: new Date().toISOString()
+      });
+      return newUser.toJSON() as User;
     },
     update: async (id: string, data: Partial<User>) => {
-      const users = await readJson<User>('users.json');
-      const index = users.findIndex(u => u.id === id);
-      if (index === -1) throw new Error('User not found');
-      users[index] = { ...users[index], ...data };
-      await writeJson('users.json', users);
-      return users[index];
+      await connectToDatabase();
+      const updated = await UserModel.findByIdAndUpdate(id, data, { new: true });
+      if (!updated) throw new Error('User not found');
+      return updated.toJSON() as User;
     },
     delete: async (id: string) => {
-      const users = await readJson<User>('users.json');
-      const filtered = users.filter(u => u.id !== id);
-      await writeJson('users.json', filtered);
+      await connectToDatabase();
+      await UserModel.findByIdAndDelete(id);
     }
   },
   posts: {
-    findMany: () => readJson<Post>('posts.json'),
+    findMany: async () => {
+      await connectToDatabase();
+      const posts = await PostModel.find();
+      return posts.map(p => p.toJSON()) as Post[];
+    },
     findById: async (id: string) => {
-      const posts = await readJson<Post>('posts.json');
-      return posts.find(p => p.id === id);
+      await connectToDatabase();
+      const post = await PostModel.findById(id);
+      return post ? (post.toJSON() as Post) : undefined;
     },
     create: async (data: Omit<Post, 'id' | 'createdAt' | 'status'>) => {
-      const posts = await readJson<Post>('posts.json');
-      const newPost: Post = {
+      await connectToDatabase();
+      const newPost = await PostModel.create({
         ...data,
-        id: crypto.randomUUID(),
         status: 'available',
-        createdAt: new Date().toISOString(),
-      };
-      posts.push(newPost);
-      await writeJson('posts.json', posts);
-      return newPost;
+        createdAt: new Date().toISOString()
+      });
+      return newPost.toJSON() as Post;
     },
     update: async (id: string, data: Partial<Post>) => {
-      const posts = await readJson<Post>('posts.json');
-      const index = posts.findIndex(p => p.id === id);
-      if (index === -1) throw new Error('Post not found');
-      posts[index] = { ...posts[index], ...data };
-      await writeJson('posts.json', posts);
-      return posts[index];
+      await connectToDatabase();
+      const updated = await PostModel.findByIdAndUpdate(id, data, { new: true });
+      if (!updated) throw new Error('Post not found');
+      return updated.toJSON() as Post;
     },
     delete: async (id: string) => {
-      const posts = await readJson<Post>('posts.json');
-      const filtered = posts.filter(p => p.id !== id);
-      await writeJson('posts.json', filtered);
+      await connectToDatabase();
+      await PostModel.findByIdAndDelete(id);
     }
   },
   requests: {
-    findMany: () => readJson<DonationRequest>('requests.json'),
+    findMany: async () => {
+      await connectToDatabase();
+      const requests = await DonationRequestModel.find();
+      return requests.map(r => r.toJSON()) as DonationRequest[];
+    },
     findById: async (id: string) => {
-      const requests = await readJson<DonationRequest>('requests.json');
-      return requests.find(r => r.id === id);
+      await connectToDatabase();
+      const request = await DonationRequestModel.findById(id);
+      return request ? (request.toJSON() as DonationRequest) : undefined;
     },
     create: async (data: Omit<DonationRequest, 'id' | 'createdAt' | 'updatedAt' | 'status'>) => {
-      const requests = await readJson<DonationRequest>('requests.json');
-      const newRequest: DonationRequest = {
+      await connectToDatabase();
+      const newRequest = await DonationRequestModel.create({
         ...data,
-        id: crypto.randomUUID(),
         status: 'Pending',
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
-      requests.push(newRequest);
-      await writeJson('requests.json', requests);
-      return newRequest;
+        updatedAt: new Date().toISOString()
+      });
+      return newRequest.toJSON() as DonationRequest;
     },
     update: async (id: string, data: Partial<DonationRequest>) => {
-      const requests = await readJson<DonationRequest>('requests.json');
-      const index = requests.findIndex(r => r.id === id);
-      if (index === -1) throw new Error('Request not found');
-      requests[index] = { ...requests[index], ...data, updatedAt: new Date().toISOString() };
-      await writeJson('requests.json', requests);
-      return requests[index];
+      await connectToDatabase();
+      const updated = await DonationRequestModel.findByIdAndUpdate(
+        id, 
+        { ...data, updatedAt: new Date().toISOString() }, 
+        { new: true }
+      );
+      if (!updated) throw new Error('Request not found');
+      return updated.toJSON() as DonationRequest;
     },
     delete: async (id: string) => {
-      const requests = await readJson<DonationRequest>('requests.json');
-      const filtered = requests.filter(r => r.id !== id);
-      await writeJson('requests.json', filtered);
+      await connectToDatabase();
+      await DonationRequestModel.findByIdAndDelete(id);
     }
   },
   reports: {
-    findMany: () => readJson<Report>('reports.json'),
+    findMany: async () => {
+      await connectToDatabase();
+      const reports = await ReportModel.find();
+      return reports.map(r => r.toJSON()) as Report[];
+    },
     findById: async (id: string) => {
-      const reports = await readJson<Report>('reports.json');
-      return reports.find(r => r.id === id);
+      await connectToDatabase();
+      const report = await ReportModel.findById(id);
+      return report ? (report.toJSON() as Report) : undefined;
     },
     create: async (data: Omit<Report, 'id' | 'createdAt' | 'status'>) => {
-      const reports = await readJson<Report>('reports.json');
-      const newReport: Report = {
+      await connectToDatabase();
+      const newReport = await ReportModel.create({
         ...data,
-        id: crypto.randomUUID(),
         status: 'pending',
-        createdAt: new Date().toISOString(),
-      };
-      reports.push(newReport);
-      await writeJson('reports.json', reports);
-      return newReport;
+        createdAt: new Date().toISOString()
+      });
+      return newReport.toJSON() as Report;
     },
     update: async (id: string, data: Partial<Report>) => {
-      const reports = await readJson<Report>('reports.json');
-      const index = reports.findIndex(r => r.id === id);
-      if (index === -1) throw new Error('Report not found');
-      reports[index] = { ...reports[index], ...data };
-      await writeJson('reports.json', reports);
-      return reports[index];
+      await connectToDatabase();
+      const updated = await ReportModel.findByIdAndUpdate(id, data, { new: true });
+      if (!updated) throw new Error('Report not found');
+      return updated.toJSON() as Report;
     }
   }
 };

@@ -8,8 +8,8 @@ export async function middleware(request: NextRequest) {
 
   const isAuthRoute = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/register');
   const isAdminRoute = request.nextUrl.pathname.startsWith('/admin');
-  const isProtectedUserRoute = 
-    request.nextUrl.pathname.startsWith('/dashboard') || 
+  const isProtectedUserRoute =
+    request.nextUrl.pathname.startsWith('/dashboard') ||
     request.nextUrl.pathname.startsWith('/posts/create') ||
     request.nextUrl.pathname.startsWith('/requests');
 

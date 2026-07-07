@@ -59,7 +59,7 @@ export default async function PostsPage({
             <span className="text-3xl">📦</span>
           </div>
           <h3 className="text-xl font-semibold text-app-green mb-2">No items available right now</h3>
-          <p className="text-app-text-light mb-6 max-w-md mx-auto">Check back later or be the first to share something with the community.</p>
+          <p className="text-app-text-light mb-6 max-md mx-auto">Check back later or be the first to share something with the community.</p>
           <Link
             href="/posts/create"
             className="inline-block bg-app-orange text-white px-8 py-3 text-sm font-semibold rounded-xl hover:bg-app-orange-dark transition-colors"
