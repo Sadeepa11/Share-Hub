@@ -1,7 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import { UserModel, PostModel, DonationRequestModel, ReportModel } from './lib/models';
+
+dotenv.config({ path: '.env.local' });
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
