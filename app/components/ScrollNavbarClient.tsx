@@ -50,6 +50,12 @@ export default function ScrollNavbarClient({ session }: { session: any }) {
                   Dashboard
                 </Link>
                 <Link
+                  href="/requests/sent"
+                  className={`text-sm font-medium transition-colors duration-300 ${isSolid ? 'text-app-text-light hover:text-app-green' : 'text-white/80 hover:text-white'}`}
+                >
+                  Track Requests
+                </Link>
+                <Link
                   href="/posts"
                   className={`text-sm font-medium transition-colors duration-300 ${isSolid ? 'text-app-text-light hover:text-app-green' : 'text-white/80 hover:text-white'}`}
                 >

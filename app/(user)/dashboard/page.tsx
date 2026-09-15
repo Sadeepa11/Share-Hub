@@ -56,9 +56,14 @@ export default async function DashboardPage() {
         <div className="bg-white rounded-2xl border border-app-border p-6">
           <div className="flex justify-between items-center mb-5">
             <h2 className="text-lg font-semibold text-app-green">Received Requests</h2>
-            <Link href="/requests/received" className="text-sm text-app-orange font-medium hover:text-app-orange-dark flex items-center gap-1 transition-colors">
-              View all <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link href="/requests/sent" className="text-sm text-app-green font-medium hover:underline flex items-center gap-1 transition-colors">
+                My Sent Requests <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link href="/requests/received" className="text-sm text-app-orange font-medium hover:text-app-orange-dark flex items-center gap-1 transition-colors">
+                View received <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
           {receivedRequests.length === 0 ? (
             <p className="text-app-text-light text-sm py-6 text-center">No requests received yet.</p>
