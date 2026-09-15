@@ -95,18 +95,15 @@ export default function EditPostForm({ post }: { post: Post }) {
           </div>
 
           <div>
-            <label htmlFor="image" className={labelClass}>Update Image (Optional)</label>
-            <p className="text-xs text-app-text-light mb-2">Upload a new image to replace the current one. Leave empty to keep the existing image.</p>
-            <div className="rounded-xl border border-app-border bg-app-cream p-4">
-              <input
-                type="file"
-                id="image"
-                name="image"
-                accept="image/*"
-                capture="environment"
-                className="w-full text-sm text-app-text-light file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-app-green file:text-white hover:file:bg-app-green-light file:transition-colors file:cursor-pointer cursor-pointer"
-              />
-            </div>
+            <label htmlFor="imageUrl" className={labelClass}>Image URL (Optional)</label>
+            <input
+              type="url"
+              id="imageUrl"
+              name="imageUrl"
+              defaultValue={post.imageUrl || ''}
+              placeholder="https://example.com/item-image.jpg"
+              className={inputClass}
+            />
           </div>
 
           <div>
