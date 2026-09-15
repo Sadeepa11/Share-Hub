@@ -92,17 +92,14 @@ export default function CreatePostPage() {
           </div>
 
           <div>
-            <label htmlFor="image" className={labelClass}>Item Image (Optional)</label>
-            <div className="rounded-xl border border-app-border bg-app-cream p-4">
-              <input
-                type="file"
-                id="image"
-                name="image"
-                accept="image/*"
-                capture="environment"
-                className="w-full text-sm text-app-text-light file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-app-green file:text-white hover:file:bg-app-green-light file:transition-colors file:cursor-pointer cursor-pointer"
-              />
-            </div>
+            <label htmlFor="imageUrl" className={labelClass}>Image URL (Optional)</label>
+            <input
+              type="url"
+              id="imageUrl"
+              name="imageUrl"
+              placeholder="https://example.com/item-image.jpg"
+              className={inputClass}
+            />
           </div>
 
           <div>
