@@ -15,10 +15,10 @@ export async function createPost(formData: FormData) {
   const description = formData.get('description') as string;
   const category = formData.get('category') as string;
   const quantityStr = formData.get('quantity') as string;
-  const image = formData.get('image') as File | null;
+  const imageUrlInput = formData.get('imageUrl') as string;
   
   if (!title || !description || !category || !quantityStr) {
-    return { error: 'All fields are required' };
+    return { error: 'All required fields must be filled' };
   }
 
   const quantity = parseInt(quantityStr, 10);
@@ -26,28 +26,7 @@ export async function createPost(formData: FormData) {
     return { error: 'Invalid quantity' };
   }
 
-  let imageUrl: string | undefined = undefined;
-
-  if (image && image.size > 0) {
-    try {
-      const userId = session.userId as string;
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads', userId);
-      
-      await mkdir(uploadDir, { recursive: true });
-      
-      const bytes = await image.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      
-      const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-      const filename = `${uniqueSuffix}-${image.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
-      
-      await writeFile(path.join(uploadDir, filename), buffer);
-      imageUrl = `/uploads/${userId}/${filename}`;
-    } catch (e) {
-      console.error('Error uploading image:', e);
-      return { error: 'Failed to upload image' };
-    }
-  }
+  const imageUrl = imageUrlInput && imageUrlInput.trim() !== '' ? imageUrlInput.trim() : undefined;
 
   await db.posts.create({
     userId: session.userId as string,
@@ -90,7 +69,7 @@ export async function updatePost(formData: FormData) {
   const description = formData.get('description') as string;
   const category = formData.get('category') as string;
   const quantityStr = formData.get('quantity') as string;
-  const image = formData.get('image') as File | null;
+  const imageUrlInput = formData.get('imageUrl') as string;
   
   if (!postId || !title || !description || !category || !quantityStr) {
     return { error: 'All text fields are required' };
@@ -108,28 +87,7 @@ export async function updatePost(formData: FormData) {
     return { error: 'Invalid quantity' };
   }
 
-  let imageUrl: string | undefined = post.imageUrl;
-
-  if (image && image.size > 0) {
-    try {
-      const userId = session.userId as string;
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads', userId);
-      
-      await mkdir(uploadDir, { recursive: true });
-      
-      const bytes = await image.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      
-      const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-      const filename = `${uniqueSuffix}-${image.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
-      
-      await writeFile(path.join(uploadDir, filename), buffer);
-      imageUrl = `/uploads/${userId}/${filename}`;
-    } catch (e) {
-      console.error('Error uploading image:', e);
-      return { error: 'Failed to upload image' };
-    }
-  }
+  const imageUrl = imageUrlInput && imageUrlInput.trim() !== '' ? imageUrlInput.trim() : post.imageUrl;
 
   await db.posts.update(postId, {
     title,
